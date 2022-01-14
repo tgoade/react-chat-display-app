@@ -1,38 +1,94 @@
-.App {
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+  box-sizing: border-box;
+}
+.display--container, body {
+  background-color: #eee;
+}
+.messages--container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 35px 15px;
   text-align: center;
+  background-color: #fff;
+  border-radius: 25px;
+  box-shadow: 0 1rem 2.5rem rgb(147 157 168 / 22%), 0 0 0 0.1rem rgb(103 110 144 / 4%);
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.sort--container {
+  margin: 0 0 20px;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.card {
   display: flex;
+  justify-content: flex-start;
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+}
+.fade-in {
+	opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 1s;
+}
+.far {
+  color: #333;
+}
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+.side {
+  width:21%;
+}
+.main {
+  width: 77%;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 0 10px;
 }
-
-.App-link {
-  color: #61dafb;
+.userId {
+  border-radius: 44px;
+  background-color: #083d66;
+  color: #F2CD5A;
+  font-size: 12px;
+  padding: 10px;
+  max-width: 90px;
+  max-height: 90px;
+  padding: 11px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.main--top {
+  display: flex;
+  justify-content: space-between;
+}
+.timestamp {
+  text-align: left;
+  font-size: 13px;
+}
+.content {
+  text-align: left;
+  margin-top: 22px;
+}
+.page--number-wrap {
+  margin-top: 20px;
+}
+.page--number {
+  list-style: none;
+  display: inline-block;
+  padding: 5px 10px;
+}
+.page--link {
+  color: #333;
+  text-decoration: none;
+}
+.highlight {
+  font-weight: 800;
 }
