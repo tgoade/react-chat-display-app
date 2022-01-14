@@ -74,17 +74,21 @@ const Display = () => {
     }
 
     return (
-        <div className='display--container'>
-            <div className='messages--container'>
-                <div className='sort--container'>
-                <select name="sort" id="sort" value={sortType} onChange={ e => setSortType(e.target.value)}>
-                    <option value="asc">Sorted by most recent</option>
-                    <option value="desc">Sorted by oldest</option>
-                </select>
+        <div className='display'>
+            <div className='wrapper'>
+                <div className='header'>
+                    <div className='sort'>
+                        <h1><i className="fas fa-comment fa-sm"></i>iChat</h1>
+                        <select name="sort" id="sort" value={sortType} onChange={ e => setSortType(e.target.value)}>
+                            <option value="asc">Sorted by most recent</option>
+                            <option value="desc">Sorted by oldest</option>
+                        </select>
+                    </div>
                 </div>
-                {/* {error && <div className="display--error">{error}</div>} */}
-                <Post messages={currentPosts} loading={loading} deleteHandler={deleteHandler} />
-                <Pagination postsPerPage={postsPerPage} totalPosts={messages.length} paginate={paginate} currentPage={currentPage} />
+                <div className='messages--container'>
+                    <Post messages={currentPosts} loading={loading} deleteHandler={deleteHandler} />
+                    <Pagination postsPerPage={postsPerPage} totalPosts={messages.length} paginate={paginate} currentPage={currentPage} />
+                </div>
             </div>
         </div>
     )

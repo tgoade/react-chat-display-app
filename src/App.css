@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -8,20 +9,62 @@
   background: transparent;
   box-sizing: border-box;
 }
-.display--container, body {
-  background-color: #eee;
+h1 {
+  color: #fff;
+  font-size: 38px;
+  font-weight: 700;
+  font-family: 'Oswald', sans-serif;
 }
-.messages--container {
+.display, body {
+  background-color: #d8ecfb;
+}
+.wrapper {
   max-width: 600px;
   margin: 20px auto;
-  padding: 35px 15px;
+  /*padding: 35px 15px;*/
   text-align: center;
   background-color: #fff;
   border-radius: 25px;
   box-shadow: 0 1rem 2.5rem rgb(147 157 168 / 22%), 0 0 0 0.1rem rgb(103 110 144 / 4%);
 }
-.sort--container {
-  margin: 0 0 20px;
+.messages {
+  padding: 10px 15px;
+}
+.title {
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px;
+  justify-content: space-between;
+}
+.header{
+  background-color: #125589;
+  min-height: 100px;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.sort {
+  display: flex;
+  width: 91%;
+  margin: 0 auto;
+  padding: 30px 10px 15px;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.sort .fas {
+  margin-right: 10px;
+}
+.sort select {
+  padding: 5px 15px;
+  border-radius: 7px;
+  background-color: #fff;
+}
+.messages--container {
+  padding: 20px 10px 35px;
 }
 .card {
   display: flex;
@@ -55,16 +98,6 @@
   flex-direction: column;
   padding: 0 10px;
 }
-.userId {
-  border-radius: 44px;
-  background-color: #083d66;
-  color: #F2CD5A;
-  font-size: 12px;
-  padding: 10px;
-  max-width: 90px;
-  max-height: 90px;
-  padding: 11px;
-}
 .main--top {
   display: flex;
   justify-content: space-between;
@@ -75,7 +108,7 @@
 }
 .content {
   text-align: left;
-  margin-top: 22px;
+  margin-top: 23px;
 }
 .page--number-wrap {
   margin-top: 20px;
@@ -83,7 +116,7 @@
 .page--number {
   list-style: none;
   display: inline-block;
-  padding: 5px 10px;
+  padding: 5px 15px;
 }
 .page--link {
   color: #333;
@@ -91,4 +124,36 @@
 }
 .highlight {
   font-weight: 800;
+}
+.userId {
+  border-radius: 50px;
+  color: #16130e;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 10px;
+  width: 95px;
+  height: 95px;
+  padding: 11px;
+  overflow: hidden;
+}
+.yellow {
+  background-color: #fcd25c;
+}
+.green {
+  background-color: #77b8a0;
+}
+.pink {
+  background-color: #f4ade9;
+}
+.blue {
+  background-color: #adb6d7;
+}
+.orange {
+  background-color: #ff760e;
+}
+@media (max-width: 768px){
+  .userId {
+    width: 95%;
+    height: auto;
+  }  
 }
