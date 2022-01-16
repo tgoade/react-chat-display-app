@@ -9,7 +9,7 @@ interface PageineProps {
 
 const Pagination: React.FC<PageineProps> = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
     
-    // Get the correct number of page numbers
+    // Get the page numbers
 
     const pageNumbers = [];
      
@@ -20,12 +20,12 @@ const Pagination: React.FC<PageineProps> = ({ postsPerPage, totalPosts, paginate
     return (
         <div className="pagination">
             <ul className='page--number-wrap'>
-                {pageNumbers.map((number) => {
+                {pageNumbers.map((number, index) => {
                     return (
                         <li key={number} className='page--number'>
-                            <a href="!#" className={`page--link ${number === currentPage ? 'highlight' : ''}`} onClick={() => paginate(number)}>       {/* passing page number up to the paginate function in the Display component */}
+                            <button className={`page--link ${number === currentPage ? 'highlight' : ''}`} onClick={() => paginate(number)} aria-label={`page ${index + 1}`}>       {/* passing page number up to the paginate function in the Display component */}
                                 {number}
-                            </a>
+                            </button>
                         </li>
                     )
                 })}
