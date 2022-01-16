@@ -1,41 +1,32 @@
+import React from 'react';
 import { MouseEvent } from 'react';
 import { Message } from './Display';
 
 interface PostProps {
     messages: Message[];
-    loading: boolean; 
     deleteHandler: (uuid: string, event: MouseEvent) => void
 }
 
-const Post = ({messages, loading, deleteHandler}: PostProps) => {
+const Post: React.FC<PostProps> = ({messages, deleteHandler}) => {
     
-
-    if(loading){
-        return <div>Loading...</div>;
-    }
 
     return (
         <div className='message--wrap'>
             {messages && messages.map((message, i) => {
                 const d = new Date (message.sentAt);
-                const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
-                const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-                const colors = ['yellow', 'green', 'pink', 'blue', 'orange'];
-                let day = days[d.getDay()];
-                let month = months[d.getMonth()];
-                let date = d.getDate();
-                let year = d.getFullYear();
-                let time = d.toLocaleTimeString();
+                let date = d.toLocaleString('en-US', {weekday: 'short', year: 'numeric', month: 'long', day: 'numeric'} );
+                let time = d.toLocaleString('en-US', {hour: 'numeric', minute: 'numeric', timeZoneName: 'short', timeZone: 'America/Los_Angeles'} );
+                const colors = ['yellow', 'turquoise', 'red', 'blue', 'purple'];
 
                 return (
-                    <div className='card fade-in' key={message.uuid}>
+                    <div className='card fade-in' key={message.uuid} aria-label='post'>
                         <div className='side'>
-                            <div className={`userId ${colors[i]}`}>{message.senderUuid}</div>
+                            <div className={`userId ${colors[i]}`} >{message.senderUuid}</div>
                         </div>
                         <div className='main'>
                             <div className='main--top'>
-                                <div className='timestamp'>{day} {month} {date}, {year} at {time}</div>
-                                <div className='delete-icon'><a href="!#" onClick = { (event) => deleteHandler(message.uuid, event) }><i className="far fa-trash-alt"></i></a></div>
+                                <div className='timestamp'>{date} at {time}</div>
+                                <button className='delete-icon' aria-label={`delete button ${i}`} onClick = { (event) => deleteHandler(message.uuid, event) }><i className="far fa-trash-alt"></i></button>
                             </div>
                             <div className='content'>{message.content}</div>
                         </div>

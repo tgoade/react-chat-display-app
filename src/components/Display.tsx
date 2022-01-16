@@ -1,3 +1,4 @@
+import data from './data/Data.json';
 import { useState, useEffect, MouseEvent } from 'react';
 import Pagination from './Pagination';
 import Post from './Post';
@@ -9,35 +10,12 @@ export interface Message {
     content: string
 };
 
-const Display = () => {
-    const [messages, setMessages] = useState<Message[]>([]);
-    const [loading, setLoading] = useState(false);
+const Display: React.FC = () => {
+    const [messages, setMessages] = useState<Message[]>(data.messages);
     const [currentPage, setCurrentPage] = useState(1);
-    const [sortType, setSortType] = useState('asc');
-
-
-    // Retrieve data
-
-    useEffect(() => {
-        fetch('data.json', {
-            headers: {'Content-Type': 'application/json',
-            'Accept': 'application/json'}
-        })
-        .then(function(response){
-            setLoading(true);
-            return response.json();
-        })
-        .then(function(responseJson) {
-            const sortedResponse = responseJson.messages.sort((a: Message, b: Message) => new Date(b.sentAt).valueOf() - new Date(a.sentAt).valueOf());
-            console.log(responseJson.messages);
-            setMessages(sortedResponse);
-            setLoading(false);
-        });
-
-    }, []);
+    const [sortType, setSortType] = useState('desc');
 
     // Change page
-    
     const paginate = (pageNumber: number) => setCurrentPage(pageNumber)     // this current page number was passed up from the onClick event in the Paginate component
 
     // Get current posts
@@ -51,10 +29,10 @@ const Display = () => {
 
     useEffect(() => {  
         const sortMessages = (sortType: string) => {
-            if(sortType==='desc'){
+            if(sortType==='asc'){
                 const sorted = [...messages].sort((a: Message, b: Message) => new Date(a.sentAt).valueOf() - new Date(b.sentAt).valueOf());       // Making a copy of the array, so that React doesn't think setMessage is being called with the same array that it already had, therefore no re-render.
                 setMessages(() => sorted);
-            } else if (sortType==='asc'){
+            } else if (sortType==='desc'){
                 const sorted = [...messages].sort((a: Message, b: Message) => new Date(b.sentAt).valueOf() - new Date(a.sentAt).valueOf());
                 setMessages(() => sorted);
             } else {
@@ -79,14 +57,14 @@ const Display = () => {
                 <div className='header'>
                     <div className='sort'>
                         <h1><i className="fas fa-comment fa-sm"></i>iChat</h1>
-                        <select name="sort" id="sort" value={sortType} onChange={ e => setSortType(e.target.value)}>
-                            <option value="asc">Sorted by most recent</option>
-                            <option value="desc">Sorted by oldest</option>
+                        <select name="sort" id="sort" value={sortType} onChange={ e => setSortType(e.target.value)} data-testid='select-btn'>
+                            <option value="desc" data-testid='select-desc'>Sorted by most recent</option>
+                            <option value="asc" data-testid='select-asc'>Sorted by oldest</option>
                         </select>
                     </div>
                 </div>
                 <div className='messages--container'>
-                    <Post messages={currentPosts} loading={loading} deleteHandler={deleteHandler} />
+                    <Post messages={currentPosts} deleteHandler={deleteHandler} />
                     <Pagination postsPerPage={postsPerPage} totalPosts={messages.length} paginate={paginate} currentPage={currentPage} />
                 </div>
             </div>

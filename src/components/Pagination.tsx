@@ -1,3 +1,5 @@
+import React from 'react';
+
 interface PageineProps {
     postsPerPage: number;
     totalPosts: number;
@@ -5,7 +7,7 @@ interface PageineProps {
     currentPage: number
 }
 
-const Pagination = ({ postsPerPage, totalPosts, paginate, currentPage }: PageineProps) => {
+const Pagination: React.FC<PageineProps> = ({ postsPerPage, totalPosts, paginate, currentPage }) => {
     
     // Get the correct number of page numbers
 
