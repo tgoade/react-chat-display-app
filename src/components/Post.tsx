@@ -20,7 +20,7 @@ const Post: React.FC<PostProps> = ({messages, deleteHandler}) => {
                 return (
                     <div className='card fade-in' key={message.uuid} aria-label='post'>
                         <div className='side'>
-                            <div className={`userId ${colors[index]}`} aria-label={`user ${index+1} id`}>{message.senderUuid}</div>
+                            <div className={`userId ${colors[index]}`} aria-label={`user ${index+1} id`}><img src={`${message.senderUuid}`} alt="" /></div>
                         </div>
                         <div className='main'>
                             <div className='main--top'>
